@@ -32,6 +32,12 @@ class TopicForm(forms.Form):
         required=False,
     )
 
+    section = forms.ModelChoiceField(
+        label=_("Categorie"),
+        queryset=Forum.objects.all(),
+        required=True,
+    )
+
     tags = forms.CharField(
         label=_(u'Tag(s) séparés par une virgule (exemple: python,django,web)'),
         max_length=64,
@@ -63,6 +69,7 @@ class TopicForm(forms.Form):
             Field('title', autocomplete='off'),
             Field('subtitle', autocomplete='off'),
             Field('tags'),
+            Field('section'),
             CommonLayoutEditor(),
         )
 

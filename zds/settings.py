@@ -111,9 +111,9 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'zds.utils.ThreadLocals',
-    'zds.middlewares.SetLastVisitMiddleware.SetLastVisitMiddleware',
+    #'zds.middlewares.SetLastVisitMiddleware.SetLastVisitMiddleware',
     'zds.middlewares.profile.ProfileMiddleware',
-    'zds.middlewares.ForceHttpsMembersMiddleware.ForceHttpsMembersMiddleware',
+    #'zds.middlewares.ForceHttpsMembersMiddleware.ForceHttpsMembersMiddleware',
 )
 
 ROOT_URLCONF = 'zds.urls'
