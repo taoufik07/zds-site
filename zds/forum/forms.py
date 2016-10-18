@@ -35,7 +35,11 @@ class TopicForm(forms.Form):
     section = forms.ModelChoiceField(
         label=_("Categorie"),
         queryset=Forum.objects.all(),
-        required=True,
+        widget=forms.Select(
+            attrs={
+                'required': 'required',
+            }
+        )
     )
 
     tags = forms.CharField(
@@ -77,8 +81,9 @@ class TopicForm(forms.Form):
         cleaned_data = super(TopicForm, self).clean()
 
         title = cleaned_data.get('title')
+        section = cleaned_data.get('section')
         text = cleaned_data.get('text')
-
+        
         if title is not None:
             if title.strip() == '':
                 self._errors['title'] = self.error_class(
