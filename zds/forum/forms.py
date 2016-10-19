@@ -81,7 +81,6 @@ class TopicForm(forms.Form):
         cleaned_data = super(TopicForm, self).clean()
 
         title = cleaned_data.get('title')
-        section = cleaned_data.get('section')
         text = cleaned_data.get('text')
         
         if title is not None:
