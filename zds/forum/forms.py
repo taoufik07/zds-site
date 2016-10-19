@@ -82,7 +82,6 @@ class TopicForm(forms.Form):
 
         title = cleaned_data.get('title')
         text = cleaned_data.get('text')
-        
         if title is not None:
             if title.strip() == '':
                 self._errors['title'] = self.error_class(
