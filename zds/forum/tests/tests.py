@@ -102,7 +102,7 @@ class ForumMemberTests(TestCase):
                 'subtitle': u'Encore ces lombards en plein ete',
                 'text': u'C\'est tout simplement l\'histoire de la ville de Paris que je voudrais vous conter ',
                 'tags': '',
-                'section': self.forum12.pk
+                'section': self.forum12.pk,
             }, follow=False)
         self.assertEqual(result.status_code, 302)
 
@@ -146,7 +146,7 @@ class ForumMemberTests(TestCase):
             {'title': u'Un autre sujet',
              'subtitle': u'Encore ces lombards en plein ete',
              'text': u'C\'est tout simplement l\'histoire de la ville de Paris que je voudrais vous conter ',
-             'section': 'abc'
+             'section': 'abc',
              },
             follow=False)
         self.assertEqual(result.status_code, 404)
@@ -316,7 +316,7 @@ class ForumMemberTests(TestCase):
                 'subtitle': expected_subtitle,
                 'text': expected_text,
                 'tags': '',
-                'section': self.forum11.pk
+                'section': self.forum11.pk,
             },
             follow=False)
 

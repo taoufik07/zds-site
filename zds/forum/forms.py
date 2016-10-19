@@ -33,7 +33,7 @@ class TopicForm(forms.Form):
     )
 
     section = forms.ModelChoiceField(
-        label=_("Categorie"),
+        label=_(u'Categorie'),
         queryset=Forum.objects.all(),
         widget=forms.Select(
             attrs={
