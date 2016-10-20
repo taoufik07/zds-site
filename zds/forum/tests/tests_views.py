@@ -276,26 +276,6 @@ class TopicNewTest(TestCase):
 
         self.assertEqual(403, response.status_code)
 
-    """
-    # By me,
-    # TO DO : Filter forum by users
-    def test_failure_create_topics_with_a_post_in_a_forum_we_cannot_read_no_get_method_only_post_method(self):
-        group = Group.objects.create(name="DummyGroup_1")
-        profile = ProfileFactory()
-        category, forum = create_category(group)
-
-        self.assertTrue(self.client.login(username=profile.user.username, password='hostel77'))
-        data = {
-            'title': 'Title of the topic',
-            'subtitle': 'Subtitle of the topic',
-            'text': 'A new post!',
-            'tags': '',
-            'forum': forum.pk,
-        }
-        response = self.client.post(reverse('topic-new'), data, follow=False)
-        self.assertEqual(403, response.status_code)
-    """
-      
     def test_failure_create_topics_with_a_post_with_wrong_forum(self):
         profile = ProfileFactory()
 
