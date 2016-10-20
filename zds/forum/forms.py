@@ -3,6 +3,7 @@
 import re
 
 from django import forms
+from django.contrib.auth.models import Group
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
@@ -32,9 +33,9 @@ class TopicForm(forms.Form):
         required=False,
     )
 
-    section = forms.ModelChoiceField(
+    forum = forms.ModelChoiceField(
         label=_(u'Catégorie'),
-        queryset=Forum.objects.all(),
+        queryset=None,
         widget=forms.Select(
             attrs={
                 'required': 'required',
@@ -64,7 +65,12 @@ class TopicForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.get('user')
+
         super(TopicForm, self).__init__(*args, **kwargs)
+
+        self.fields['forum'].queryset = Forum.objects.exclude(group__in=Group.objects.filter(user=self.user).all())
+
         self.helper = FormHelper()
         self.helper.form_class = 'content-wrapper'
         self.helper.form_method = 'post'
@@ -73,7 +79,7 @@ class TopicForm(forms.Form):
             Field('title', autocomplete='off'),
             Field('subtitle', autocomplete='off'),
             Field('tags'),
-            Field('section'),
+            Field('forum'),
             CommonLayoutEditor(),
         )
 
